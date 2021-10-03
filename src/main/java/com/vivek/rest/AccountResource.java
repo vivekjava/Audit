@@ -33,7 +33,7 @@ public class AccountResource {
 		return acc;
 	}
 	
-	@GetMapping(value = "/saveandshow")
+		@GetMapping(value = "/saveandshow")
 	public Object GetsavedValue(@RequestParam("name") String name,@RequestParam("id") Long id ) {
 		//List<Account> list =  accRepo.findAll();
 		Account acc_find = accRepo.getOne(Long.valueOf(id));
@@ -42,14 +42,11 @@ public class AccountResource {
 		account.setAccountname(name);
 		//account.setAge(name);
 		Account acc = accRepo.save(account);
-		Optional<Account> accountgGe = accRepo.findById(acc.getId());
-		System.out.println("Accont "+accountgGe);
-		List<Long> list = new ArrayList<Long>();
-		list.add(id);
-		Object resp = accRepo.findAllById(list);
-		System.out.println("Details "+resp);
+		Optional<Account> fetchAccount = accRepo.findById(acc.getId());
+		System.out.println("Accont "+fetchAccount);	
 		return "Success";		
 	}
+	
 	
 	@GetMapping(value = "/show")
 	public Object GeValue(@RequestParam("id") Long id) {
